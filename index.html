@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#07070a" />
+  <meta name="description" content="DJ VECORD's — Mezcla en vivo, audio profesional y atmósfera visual para eventos en Toluca y Estado de México desde 2017." />
+  <title>DJ VECORD's | Performance & Audio Profesional</title>
+
+  <!-- Tipografías geométricas y de lectura limpia -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@600;800;900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- VIDEO DE FONDO FIJO (Atributos obligatorios para autoplay en iOS y Android) -->
+  <div class="video-bg-wrapper" aria-hidden="true">
+    <video id="bgVideo" class="video-bg" autoplay muted loop playsinline preload="metadata" poster="assets/logo.jpg">
+      <source src="assets/fondo.mp4" type="video/mp4" />
+    </video>
+    <div class="video-overlay"></div>
+    <div class="scanlines"></div>
+  </div>
+
+  <!-- NAVEGACIÓN PRINCIPAL -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#inicio" class="nav-brand">
+        <span class="brand-dot"></span>
+        <span>DJ VECORD'S</span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#inicio">Inicio</a>
+        <a href="#trayectoria">Trayectoria</a>
+        <a href="#paquetes">Paquetes</a>
+        <a href="#redes">Redes</a>
+        <a href="https://wa.me/527223121510?text=Hola%20DJ%20Vecord's,%20me%20interesa%20cotizar%20un%20evento" target="_blank" rel="noopener noreferrer" class="nav-cta">
+          Cotizar
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- SECCIÓN HERO CON LOGO ANIMADO Y EFECTO HDR/P3 -->
+    <section id="inicio" class="hero section-reveal">
+      <div class="hero-content">
+        <div class="logo-stage" id="logoStage">
+          <div class="logo-glow-ring"></div>
+          <img src="assets/logo.jpg" alt="Logotipo oficial DJ Vecord's" class="hero-logo hdr-logo" />
+        </div>
+
+        <div class="equalizer" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+
+        <h1 class="hero-title hdr-text">DJ VECORD'S</h1>
+        <p class="hero-subtitle">
+          La música perfecta para tu evento. Mezcla en vivo, iluminación y calidad sonora desde 2017.
+        </p>
+
+        <div class="hero-actions">
+          <a href="https://wa.me/527223121510?text=Hola%20DJ%20Vecord's,%20quiero%20informaci%C3%B3n%20para%20mi%20evento" target="_blank" rel="noopener noreferrer" class="btn btn-primary hdr-border">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+              <path d="M12.031 2c-5.516 0-9.969 4.453-9.969 9.969 0 1.758.459 3.475 1.331 4.988L2 22l5.188-1.361a9.923 9.923 0 0 0 4.843 1.258h.004c5.515 0 9.968-4.453 9.968-9.969A9.93 9.93 0 0 0 19.08 4.92 9.914 9.914 0 0 0 12.031 2zm5.816 14.273c-.246.693-1.434 1.325-1.984 1.408-.506.076-1.147.108-1.85-.116-.427-.136-.975-.318-1.678-.621-2.953-1.275-4.881-4.248-5.028-4.444-.147-.196-1.2-1.597-1.2-3.047 0-1.45.76-2.163 1.03-2.458.27-.295.589-.369.785-.369.196 0 .393.002.564.01.181.009.424-.069.663.506.246.59.835 2.039.909 2.186.074.148.123.32.025.516-.098.197-.147.32-.295.492-.147.172-.31.384-.442.516-.147.147-.301.307-.129.602.172.295.763 1.259 1.638 2.039 1.125 1.003 2.074 1.314 2.369 1.461.295.148.467.123.639-.074.172-.196.737-.86.933-1.155.197-.295.393-.246.663-.147.27.098 1.719.811 2.014.958.295.148.491.221.565.344.073.123.073.713-.173 1.406z"/>
+            </svg>
+            Reservar por WhatsApp
+          </a>
+          <a href="#paquetes" class="btn btn-secondary">Ver Paquetes</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN TRAYECTORIA -->
+    <section id="trayectoria" class="section section-reveal">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">DESDE 2017 • TOLUCA, EDO. MÉX.</span>
+          <h2 class="section-title hdr-text">PERFORMANCE Y CALIDAD</h2>
+        </div>
+
+        <div class="about-grid">
+          <div class="glass-card hdr-border">
+            <h3>Control total de la pista</h3>
+            <p>
+              Desde 2017, <strong>DJ VECORD's</strong> diseña la atmósfera sonora ideal para cada tipo de evento en Toluca y el Estado de México. Desde recepciones elegantes hasta sesiones de alta energía en pista, cada set se adapta en tiempo real al público.
+            </p>
+          </div>
+
+          <div class="glass-card hdr-border">
+            <h3>Enfoque y compromiso</h3>
+            <p>
+              Combinamos programación musical versátil, mezclas limpias en vivo y equipamiento profesional para convertir bodas, fiestas privadas y eventos sociales en experiencias memorables de principio a fin.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN PAQUETES -->
+    <section id="paquetes" class="section section-reveal">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">CONTRATACIONES</span>
+          <h2 class="section-title hdr-text">PLANES Y PRECIOS</h2>
+        </div>
+
+        <div class="pricing-grid">
+          <!-- Paquete Básico rescatado de tu sitio anterior -->
+          <article class="glass-card pricing-card featured hdr-border">
+            <div class="badge-hdr">MÁS SOLICITADO</div>
+            <h3>Paquete Básico</h3>
+            <div class="price hdr-text">$3,500 <span>MXN</span></div>
+            <p class="price-desc">Ideal para reuniones, cumpleaños y eventos íntimos con audio profesional.</p>
+            <ul class="feature-list">
+              <li>DJ mezclando en vivo durante todo el evento</li>
+              <li>Sistema de audio profesional calibrado</li>
+              <li>Iluminación ambiental básica para pista</li>
+              <li>Música personalizada según tus géneros</li>
+            </ul>
+            <a href="https://wa.me/527223121510?text=Hola%20DJ%20Vecord's,%20me%20interesa%20solicitar%20reserva%20para%20el%20Paquete%20B%C3%A1sico%20($3,500)" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-full">
+              Solicitud de reserva
+            </a>
+          </article>
+
+          <!-- Segundo paquete editable para eventos medianos/grandes -->
+          <article class="glass-card pricing-card hdr-border">
+            <div class="badge-outline">EVENTO COMPLETO</div>
+            <h3>Paquete Pro / Evento Social</h3>
+            <div class="price hdr-text">A Cotizar</div>
+            <p class="price-desc">Para XV años, bodas, graduaciones y fiestas de mayor aforo.</p>
+            <ul class="feature-list">
+              <li>Refuerzo sonoro de alto impacto y subwoofers</li>
+              <li>Show de iluminación robótica y efectos</li>
+              <li>Micrófonos inalámbricos para protocolo</li>
+              <li>Cabina DJ estética con identidad visual</li>
+            </ul>
+            <a href="https://wa.me/527223121510?text=Hola%20DJ%20Vecord's,%20quiero%20cotizar%20un%20Paquete%20Pro%20para%20mi%20evento" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-full">
+              Cotizar fecha
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN REDES OFICIALES Y PERSONALES DEL DJ -->
+    <section id="redes" class="section section-reveal">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">CONECTA DIRECTO</span>
+          <h2 class="section-title hdr-text">REDES OFICIALES Y DEL DJ</h2>
+          <p class="section-desc">Sigue los eventos de la marca o conecta directamente con el DJ.</p>
+        </div>
+
+        <div class="social-grid">
+          <!-- 1. Página de Facebook de DJ -->
+          <a href="https://www.facebook.com/share/1f9ddB8hkC/" target="_blank" rel="noopener noreferrer" class="social-card glass-card hdr-border">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" aria-hidden="true">
+                <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
+              </svg>
+            </div>
+            <div class="social-info">
+              <span class="social-role">PÁGINA OFICIAL</span>
+              <h3>Facebook DJ VECORD's</h3>
+              <p>Eventos, reseñas, mixes y disponibilidad</p>
+            </div>
+            <span class="social-arrow">→</span>
+          </a>
+
+          <!-- 2. Facebook Personal del DJ -->
+          <a href="https://www.facebook.com/share/1BFMZdfNhu/" target="_blank" rel="noopener noreferrer" class="social-card glass-card hdr-border">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" aria-hidden="true">
+                <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+              </svg>
+            </div>
+            <div class="social-info">
+              <span class="social-role">PERFIL DEL DJ</span>
+              <h3>Facebook Personal</h3>
+              <p>Trato directo y contacto personal</p>
+            </div>
+            <span class="social-arrow">→</span>
+          </a>
+
+          <!-- 3. Instagram del DJ -->
+          <a href="https://www.instagram.com/jk2d.bc?dlrf=MXQ2NncyeDdsdG55aA==" target="_blank" rel="noopener noreferrer" class="social-card glass-card hdr-border">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" aria-hidden="true">
+                <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2zm-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6zm9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25zM12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
+              </svg>
+            </div>
+            <div class="social-info">
+              <span class="social-role">REELS & CABINA</span>
+              <h3>Instagram del DJ</h3>
+              <p>Historias en vivo, sets y detrás de cabina</p>
+            </div>
+            <span class="social-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- BOTÓN FLOTANTE DE WHATSAPP SIEMPRE ACCESIBLE -->
+  <a href="https://wa.me/527297275004?text=Hola%20DJ%20Vecord's,%20vi%20tu%20p%C3%A1gina%20web%20y%20quiero%20cotizar%20un%20evento" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" aria-hidden="true">
+      <path d="M12.031 2c-5.516 0-9.969 4.453-9.969 9.969 0 1.758.459 3.475 1.331 4.988L2 22l5.188-1.361a9.923 9.923 0 0 0 4.843 1.258h.004c5.515 0 9.968-4.453 9.968-9.969A9.93 9.93 0 0 0 19.08 4.92 9.914 9.914 0 0 0 12.031 2zm5.816 14.273c-.246.693-1.434 1.325-1.984 1.408-.506.076-1.147.108-1.85-.116-.427-.136-.975-.318-1.678-.621-2.953-1.275-4.881-4.248-5.028-4.444-.147-.196-1.2-1.597-1.2-3.047 0-1.45.76-2.163 1.03-2.458.27-.295.589-.369.785-.369.196 0 .393.002.564.01.181.009.424-.069.663.506.246.59.835 2.039.909 2.186.074.148.123.32.025.516-.098.197-.147.32-.295.492-.147.172-.31.384-.442.516-.147.147-.301.307-.129.602.172.295.763 1.259 1.638 2.039 1.125 1.003 2.074 1.314 2.369 1.461.295.148.467.123.639-.074.172-.196.737-.86.933-1.155.197-.295.393-.246.663-.147.27.098 1.719.811 2.014.958.295.148.491.221.565.344.073.123.073.713-.173 1.406z"/>
+    </svg>
+    <span class="wa-tooltip">WhatsApp Directo</span>
+  </a>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <p class="footer-brand">DJ VECORD'S</p>
+      <p class="footer-loc">Toluca, Estado de México • Tel: 729 727 5004</p>
+      <p class="footer-copy">© <span id="currentYear"></span> DJ VECORD's. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

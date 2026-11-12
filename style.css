@@ -1,0 +1,722 @@
+/* =========================================================
+   VARIABLES BASE (sRGB) + MEJORA WIDE-GAMUT P3 / HDR
+   ========================================================= */
+:root {
+  --bg-dark: #060609;
+  --neon-red: #ff1e2d;
+  --neon-red-deep: #b80012;
+  --neon-white: #ffffff;
+  --text-main: #f4f4f6;
+  --text-muted: #b5b8c5;
+  --glass-bg: rgba(12, 12, 18, 0.72);
+  --glass-border: rgba(255, 30, 45, 0.35);
+  --wa-green: #25d366;
+  --font-display: 'Orbitron', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+/* Colores Wide-Gamut P3 para pantallas OLED/AMOLED modernas */
+@supports (color: color(display-p3 1 0 0)) {
+  :root {
+    --neon-red: color(display-p3 1 0.06 0.14);
+    --neon-red-deep: color(display-p3 0.78 0 0.06);
+    --neon-white: color(display-p3 1 1 1);
+  }
+}
+
+/* =========================================================
+   RESET & BASE RESPONSIVE
+   ========================================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: var(--font-body);
+}
+
+body {
+  min-height: 100dvh;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  width: min(1140px, 90%);
+  margin-inline: auto;
+}
+
+/* =========================================================
+   VIDEO DE FONDO Y CAPAS DE CONTRASTE
+   ========================================================= */
+.video-bg-wrapper {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+  z-index: -2;
+  overflow: hidden;
+  background: #050507;
+}
+
+.video-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: contrast(1.12) brightness(0.78);
+}
+
+/* Oscurece los destellos blancos de las bolas disco para leer bien */
+.video-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(184, 0, 18, 0.18), rgba(6, 6, 10, 0.86) 75%),
+    linear-gradient(180deg, rgba(6, 6, 10, 0.65) 0%, rgba(6, 6, 10, 0.85) 100%);
+}
+
+.scanlines {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 0);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+
+/* =========================================================
+   EFECTOS HDR / LUMINANCIA NEÓN
+   ========================================================= */
+.hdr-text {
+  color: var(--neon-white);
+  text-shadow:
+    0 0 10px rgba(255, 255, 255, 0.45),
+    0 0 24px var(--neon-red),
+    0 0 48px rgba(255, 30, 45, 0.65);
+}
+
+.hdr-logo {
+  filter:
+    contrast(1.08)
+    saturate(1.22)
+    drop-shadow(0 0 18px rgba(255, 30, 45, 0.7))
+    drop-shadow(0 0 42px rgba(255, 30, 45, 0.35));
+}
+
+.hdr-border {
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    0 10px 35px rgba(0, 0, 0, 0.65),
+    inset 0 0 18px rgba(255, 30, 45, 0.12);
+}
+
+/* Potenciador específico cuando el dispositivo reporta pantalla HDR */
+@media (dynamic-range: high) {
+  .hdr-text {
+    filter: brightness(1.18);
+    text-shadow:
+      0 0 14px color(display-p3 1 1 1 / 0.8),
+      0 0 32px color(display-p3 1 0.05 0.12),
+      0 0 64px color(display-p3 1 0.05 0.12 / 0.85);
+  }
+
+  .hdr-logo {
+    filter:
+      brightness(1.15)
+      contrast(1.1)
+      saturate(1.35)
+      drop-shadow(0 0 24px color(display-p3 1 0.05 0.12 / 0.9));
+  }
+}
+
+/* =========================================================
+   NAVBAR RESPONSIVE
+   ========================================================= */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 1rem 0;
+  transition: background 0.3s ease, padding 0.3s ease, border-color 0.3s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.navbar.scrolled {
+  background: rgba(7, 7, 11, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 0.75rem 0;
+  border-bottom-color: rgba(255, 30, 45, 0.25);
+}
+
+.nav-container {
+  width: min(1140px, 90%);
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-brand {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.brand-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--neon-red);
+  box-shadow: 0 0 12px var(--neon-red);
+  animation: pulseDot 1.6s infinite alternate;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+}
+
+.nav-links a {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: color 0.25s ease, text-shadow 0.25s ease;
+}
+
+.nav-links a:hover {
+  color: var(--neon-white);
+  text-shadow: 0 0 12px var(--neon-red);
+}
+
+.nav-links .nav-cta {
+  padding: 0.5rem 1.15rem;
+  border-radius: 999px;
+  background: var(--neon-red);
+  color: #fff;
+  box-shadow: 0 0 18px rgba(255, 30, 45, 0.55);
+}
+
+.nav-links .nav-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 26px var(--neon-red);
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.menu-toggle span {
+  width: 26px;
+  height: 2px;
+  background: #fff;
+  transition: 0.3s ease;
+}
+
+/* =========================================================
+   HERO & LOGO ANIMADO
+   ========================================================= */
+.hero {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 6.5rem 1.25rem 3.5rem;
+}
+
+.hero-content {
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo-stage {
+  position: relative;
+  width: min(440px, 86vw);
+  margin-bottom: 1.5rem;
+  border-radius: 18px;
+  padding: 6px;
+  background: linear-gradient(135deg, rgba(255, 30, 45, 0.8), rgba(255, 255, 255, 0.15), rgba(255, 30, 45, 0.8));
+  animation: floatLogo 4.5s ease-in-out infinite;
+  transition: transform 0.15s ease-out;
+}
+
+.hero-logo {
+  width: 100%;
+  border-radius: 14px;
+  object-fit: cover;
+}
+
+/* Ecualizador animado en vivo */
+.equalizer {
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  height: 24px;
+  margin-bottom: 1rem;
+}
+
+.equalizer span {
+  width: 4px;
+  height: 8px;
+  background: var(--neon-red);
+  border-radius: 4px;
+  box-shadow: 0 0 10px var(--neon-red);
+  animation: eqBounce 0.9s ease-in-out infinite alternate;
+}
+
+.equalizer span:nth-child(2) { animation-delay: 0.2s; }
+.equalizer span:nth-child(3) { animation-delay: 0.4s; }
+.equalizer span:nth-child(4) { animation-delay: 0.15s; }
+.equalizer span:nth-child(5) { animation-delay: 0.35s; }
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.1rem, 6vw, 4rem);
+  font-weight: 900;
+  letter-spacing: 3px;
+  margin-bottom: 0.75rem;
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2.3vw, 1.2rem);
+  color: var(--text-muted);
+  max-width: 580px;
+  margin-bottom: 2rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* =========================================================
+   BOTONES
+   ========================================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.7rem;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.98rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--neon-red), var(--neon-red-deep));
+  color: #fff;
+  box-shadow: 0 0 24px rgba(255, 30, 45, 0.5);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 36px var(--neon-red);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #fff;
+  backdrop-filter: blur(8px);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 30, 45, 0.16);
+  border-color: var(--neon-red);
+  transform: translateY(-3px);
+}
+
+.btn-full {
+  width: 100%;
+  margin-top: auto;
+}
+
+/* =========================================================
+   SECCIONES Y TARJETAS GLASSMORPHISM
+   ========================================================= */
+.section {
+  padding: 5.5rem 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-tag {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  letter-spacing: 2.5px;
+  color: var(--neon-red);
+  margin-bottom: 0.5rem;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.65rem, 4vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.section-desc {
+  color: var(--text-muted);
+  margin-top: 0.6rem;
+}
+
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 18px;
+  padding: 2rem;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--neon-red);
+  box-shadow: 0 14px 40px rgba(255, 30, 45, 0.22);
+}
+
+.about-grid,
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 310px), 1fr));
+  gap: 1.75rem;
+}
+
+.about-grid h3 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  margin-bottom: 0.85rem;
+  color: #fff;
+}
+
+.about-grid p {
+  color: var(--text-muted);
+}
+
+/* Paquetes */
+.pricing-card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.badge-hdr,
+.badge-outline {
+  align-self: flex-start;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  letter-spacing: 1.5px;
+  padding: 0.32rem 0.75rem;
+  border-radius: 999px;
+  margin-bottom: 1rem;
+}
+
+.badge-hdr {
+  background: var(--neon-red);
+  color: #fff;
+  box-shadow: 0 0 14px rgba(255, 30, 45, 0.65);
+}
+
+.badge-outline {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--text-muted);
+}
+
+.pricing-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  margin-bottom: 0.5rem;
+}
+
+.price {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 900;
+  margin-bottom: 0.6rem;
+}
+
+.price span {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.price-desc {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 1.4rem;
+}
+
+.feature-list {
+  list-style: none;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.feature-list li {
+  position: relative;
+  padding-left: 1.4rem;
+  font-size: 0.94rem;
+  color: #e4e6ee;
+}
+
+.feature-list li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: var(--neon-red);
+}
+
+/* =========================================================
+   TARJETAS DE REDES SOCIALES
+   ========================================================= */
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: 1.4rem;
+}
+
+.social-card {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  padding: 1.5rem;
+}
+
+.social-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  background: rgba(255, 30, 45, 0.14);
+  border: 1px solid rgba(255, 30, 45, 0.4);
+  color: var(--neon-red);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: 0.3s ease;
+}
+
+.social-card:hover .social-icon {
+  background: var(--neon-red);
+  color: #fff;
+  box-shadow: 0 0 20px var(--neon-red);
+}
+
+.social-role {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  letter-spacing: 1.5px;
+  color: var(--neon-red);
+  margin-bottom: 0.2rem;
+}
+
+.social-info h3 {
+  font-size: 1.08rem;
+  font-weight: 700;
+}
+
+.social-info p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.social-arrow {
+  margin-left: auto;
+  font-size: 1.3rem;
+  color: var(--text-muted);
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.social-card:hover .social-arrow {
+  transform: translateX(5px);
+  color: #fff;
+}
+
+/* =========================================================
+   BOTÓN FLOTANTE DE WHATSAPP
+   ========================================================= */
+.whatsapp-float {
+  position: fixed;
+  bottom: max(20px, env(safe-area-inset-bottom));
+  right: 20px;
+  z-index: 99;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--wa-green);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 6px 24px rgba(37, 211, 102, 0.55);
+  animation: pulseWa 2.2s infinite;
+  transition: transform 0.25s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+
+.wa-tooltip {
+  position: absolute;
+  right: 72px;
+  background: rgba(10, 10, 14, 0.92);
+  color: #fff;
+  padding: 0.45rem 0.85rem;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  border: 1px solid rgba(37, 211, 102, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.whatsapp-float:hover .wa-tooltip {
+  opacity: 1;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(5, 5, 8, 0.88);
+  padding: 2.5rem 0;
+  text-align: center;
+}
+
+.footer-brand {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 0.4rem;
+}
+
+.footer-loc,
+.footer-copy {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+/* =========================================================
+   ANIMACIONES & REVELADO AL SCROLL
+   ========================================================= */
+.section-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+
+.section-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes floatLogo {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes eqBounce {
+  0% { height: 6px; }
+  100% { height: 24px; }
+}
+
+@keyframes pulseDot {
+  0% { opacity: 0.65; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes pulseWa {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.65); }
+  70% { box-shadow: 0 0 0 16px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* =========================================================
+   MEDIA QUERIES (CELULARES Y TABLETS)
+   ========================================================= */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 64px;
+    right: -100%;
+    width: 78%;
+    max-width: 300px;
+    height: calc(100dvh - 64px);
+    background: rgba(8, 8, 13, 0.96);
+    backdrop-filter: blur(18px);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem;
+    gap: 1.5rem;
+    border-left: 1px solid rgba(255, 30, 45, 0.3);
+    transition: right 0.35s ease;
+  }
+
+  .nav-links.open {
+    right: 0;
+  }
+
+  .wa-tooltip {
+    display: none;
+  }
+}
+
+/* Respeta configuración de ahorro de movimiento del sistema */
+@media (prefers-reduced-motion: reduce) {
+  .logo-stage,
+  .equalizer span,
+  .whatsapp-float {
+    animation: none;
+  }
+}
